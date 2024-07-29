@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>alumni website</title>
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+	<section class="subheader">
+
+		<nav>
+			
+			<a href="index.html">
+				<img src="images/logo.png">
+			</a>
+
+				<div class="nav-links" id="navLinks">
+					
+					<i class="fa fa-times" onclick="hideMenu()"></i>
+
+					<ul>
+						
+						<li><a href="index.html">HOME</a></li>
+						<li><a href="alumni council.html">ALUMNI COUNCIL</a></li>
+						<li><a href="about.html" class="">ABOUT US</a></li>
+						<!-- <li><a href="">ALUMNI DATABASE</a></li> -->
+						<!-- <li><a href="">CALENDER</a></li> -->
+						<!-- <li><a href="">DONATE</a></li> -->
+						<li><a href="contact.html">CONTACT US</a></li>
+						<li><a href="login.html" class="login">LOGIN</a></li>
+						<!-- <li><a href="" class="register">REGISTER</a></li> -->
+					</ul>
+				</div>
+			<i class="fa fa-bars" onclick="showMenu()"></i>
+		</nav>
+
+	<h1>ABOUT US</h1>
+		
+	</section>
+
+<!-- -------------------about us content---------- -->
+
+<section class="about">
+	<div class="row">
+		<div class="about-col">
+			<h3>Army Public School Agra Alumni Community</h3>
+			<p>
+Welcome to the Army Public School Agra Alumni Community, where memories come to life and connections flourish! As proud graduates of Army Public School Agra, we share an unbreakable bond that spans across generations. Our beloved institution has nurtured countless young minds, shaping them into confident individuals ready to take on the world.<br>
+
+Established with the aim of bridging the gap between the school and its distinguished alumni, our Alumni Community strives to foster an ever-lasting relationship with our graduates. We believe that the journey doesn't end with graduation; it continues through the years as we grow, achieve, and succeed in our diverse paths.<br>
+
+At Army Public School Agra Alumni Community, we celebrate the values instilled in us during our time at school - Discipline, Integrity, and Excellence. Through this platform, we invite all alumni to rekindle the camaraderie and cherished memories, reconnect with old friends and mentors, and create new connections that will inspire and support one another.<br>
+
+Our Alumni Council, comprising passionate school staff and selected alumni leaders, drives this vibrant community. Together, we envision a future filled with collective growth, a thriving network of support, and a legacy that leaves an indelible mark on the world.<br>
+
+Come, join us on this nostalgic journey and be part of a community that cherishes the past and embraces the future with unwavering pride.<br>
+
+Together, we shine as the proud alumni of Army Public School Agra!
+			</p>
+
+<h3>Once an APSite, always an APSite!<h3>
+		<a href="login.html" class="know-more red-button">LOGIN / REGISTER</a>
+		</div>
+		<div class="about-col">
+			<img src="images/10.png">
+		</div>
+	</div>
+</section>
+
+
+
+<!-- -------------------footer--------------- -->
+<hr>
+<section class="footer">
+	<h4>ABOUT US</h4>
+	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
+	
+</section>
+
+<section class="contact-footer">
+		<div class="abt-col">
+			<div>
+				<i class="fa fa-home"></i>
+				<span>
+					<h5>Shivaji Rd, Army Area, Agra Cantt</h5>
+					<p> Agra, Uttar Pradesh 282001</p>
+					
+				</span>
+			</div>
+			<div>
+				<i class="fa fa-phone"></i>
+				<span>
+					<h5>0562-2226009</h5>
+					<p> Monday - Saturday, 07:15 AM - 03:00 PM</p>
+					
+				</span>
+			</div>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<span>
+					<h5>armyagra@gmail.com</h5>
+					<p> Email us your query</p>
+					
+				</span>
+			</div>
+		</div>
+
+</section>
+
+
+
+
+<!-- --------javascript for toggle menu--------- -->
+
+<script type="text/javascript">
+	var navLinks=document.getElementById("navLinks");
+
+	function showMenu() {
+		navLinks.style.right="0";
+	}
+	function hideMenu() {
+		navLinks.style.right="-200px";
+	}
+</script>
+
+
+</body>
+</html>
