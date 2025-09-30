@@ -6,7 +6,7 @@ font-family: 'Poppins', sans-serif;
 }
 
 .header{
-	min-height: 100vh;
+	min-height: 110vh;
 	width: 100%;
 	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("images/banner.png");
 	background-position: center;
@@ -20,7 +20,11 @@ nav{
 	align-items: center;
 }
 nav img{
-	width: 80px;
+	width: 130px;
+	/* height: 150px; */
+	/* background-color: #f4bb36; */
+	/* opacity: 0.8; */
+	border-radius: 50%;
 }
 .nav-links{
 	flex: 1;
@@ -51,23 +55,52 @@ nav img{
 	width: 100%;
 }
 .text-box{
-	width: 90%;
-	color: #fff;
+	margin-top: 3%;
+	width: 70%;
+	/* color: #fff; */
+	color:darkgray;
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%,-50%);
 	text-align: center;
 }
-.text-box h1{
-	font-size: 45px;
+.text-box h3{
+	/* color: burlywood; */
+	color:lightcoral;
+	font-style: italic;
+	font-weight: 100;
+	/* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+	/* font-family: 'Courier New', Courier, monospace; */
+	/* font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+	/* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+	/* font-family: 'Times New Roman', Times, serif; */
+	font-family: Georgia, 'Times New Roman', Times, serif;
+	/* font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; */
+	/* font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; */
+	/* font-family:monospace; */
+	/* font-family:system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+
+}
+ .text-box h1{
+	/* color: burlywood; */
+	color: darkgoldenrod;
+	/* font-size:xx-large; */
 
 }
 .text-box p{
 	font-size: 15px;
 	margin: 10px 0 40px;
 	color: grey;
+	/* color:darkgray; */
 
+}
+.text-box img{
+	width: 200px;
+	/* height: 150px; */
+	/* border-radius: 50%; */
+	margin-bottom: 20px;
+	box-shadow:  0 0 20px 0px rgba(0,0,0,1);
 }
 .know-more{
 	display: inline-block;
@@ -121,12 +154,17 @@ nav .fa{
 	font-size: 20px;
 }
 
+	.header{
+	min-height: 150vh;
+	}
+
 	.nav-links ul li{
 		display: block;
 	}
 	.nav-links{
 		position: fixed;
-		background: #f44336;
+		/* background: #f44336; */
+		background:rgb(47, 69, 107);
 		height: 100vh;
 		width: 200px;
 		top: 0;
@@ -330,7 +368,7 @@ h3{
 }
 .abt-col div{
 	display: inherit;
-	align-items: center;s
+	align-items: center;
 	margin-top: 40px;
 	padding-left: 40px;
 	padding-right: 40px;
@@ -625,10 +663,21 @@ h3{
 .wrapper.active{
 	height: 750px;
 	width: 500px;
+	overflow-y: auto;  
+	max-height: 90vh;
+}
+@media(max-width:700px){
+    .wrapper, .wrapper.active {
+        width: 95vw;
+        min-width: 0;
+        height: auto;
+        max-height: 95vh;
+        overflow-y: auto;
+    }
 }
 .wrapper .form-box{
   	width: 80%;
-  	padding: 40px;
+  	padding: 40px;  
 }
 .wrapper .form-box.log{
 	transition: transform .18s ease;
@@ -637,6 +686,7 @@ h3{
 .wrapper.active .form-box.log{
 	transition: none;
 	transform: translateX(-500px);
+	/* padding-top: 110%; */
 }
 .wrapper .form-box.reg{
 	position: absolute;
@@ -646,6 +696,7 @@ h3{
 .wrapper.active .form-box.reg{
 	transition: transform .18s ease;
 	transform: translateX(0px);
+	padding-top: 100%;
 }
 
 .wrapper .icon-close{
@@ -794,3 +845,200 @@ h3{
 
 
 
+
+
+/* File input styling */
+.input-box input[type="file"] {
+    color: #f44336;
+    font-size: 0.9em;
+    padding: 5px 0;
+}
+
+.input-box input[type="file"]::file-selector-button {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    margin-right: 5px;
+}
+
+.input-box input[type="file"]::file-selector-button:hover {
+    background: orange;
+}
+
+/* Fix wrapper height for register */
+.wrapper.active .form-box.reg {
+    transition: transform .18s ease;
+    transform: translateX(0px);
+    padding-top: 110%;
+}
+
+/* Optional: fix select arrow for better visibility */
+.input-box select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    padding-right: 30px;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%23f44336" height="10" viewBox="0 0 10 10" width="10" xmlns="http://www.w3.org/2000/svg"><polygon points="0,0 10,0 5,5"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------------------success stories page---------------------------------------------------------------------*/
+
+/* .storiesheader{
+	min-height: 70vh;
+	width: 100%;
+	background-image: linear-gradient(rgba(4,9,30,0.7),rgba(4,9,30,0.7)),url("images/1.png");
+	background-position: center;
+	background-size: cover;
+	position: relative;
+} */
+
+/* ==== Success Stories Page ==== */
+.stories-section {
+    width: 80%;
+    margin: auto;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.stories-section h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.stories-intro {
+    max-width: 700px;
+    margin: 0 auto 40px;
+    font-size: 16px;
+    color: #555;
+}
+
+.stories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+}
+
+.story-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+.story-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.story-card:hover {
+    transform: scale(1.03);
+}
+
+.story-overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    text-align: center;
+    padding: 15px 10px;
+    transition: background 0.3s;
+}
+
+.story-overlay h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.story-overlay p {
+    margin: 5px 0 0;
+    font-size: 14px;
+}
+
+/* Modal */
+.story-modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    align-items: center;
+    justify-content: center;
+}
+
+.story-modal-content {
+    background: #fff;
+    width: 75%;
+    max-width: 900px;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: left;
+    position: relative;
+    animation: fadeIn 0.3s ease;
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px; right: 20px;
+    font-size: 28px;
+    color: #333;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {opacity:0; transform: scale(0.9);}
+    to {opacity:1; transform: scale(1);}
+}
+
+/* ================= Responsive for Success Stories ================= */
+
+/* Tablet: max-width 992px → 2 cards per row */
+@media screen and (max-width: 992px) {
+  .stories-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px;
+  }
+  .stories-section h2 { font-size: 28px; }
+  .stories-intro { font-size: 15px; }
+}
+
+/* Mobile: max-width 600px → 1 card per row */
+@media screen and (max-width: 600px) {
+  .stories-grid {
+    /* grid-template-columns: 1fr !important; */
+	grid-template-columns: repeat(2, 1fr) !important;
+    gap: 15px;
+  }
+  .stories-section { width: 95%; padding: 40px 0; }
+  .stories-section h2 { font-size: 24px; }
+  .story-overlay h3 { font-size: 18px; }
+  .story-overlay p { font-size: 13px; }
+}
+
+
+
+/*---------------------------------------------------------------new log reg styles---------------------------------------------------------------------*/
