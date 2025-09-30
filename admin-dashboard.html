@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <!-- Navbar -->
+
+<!-- ======= Header ======= -->
+<section class="subheader">
+    <nav>
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="alumni council.html">ALUMNI COUNCIL</a></li>
+                <li><a href="about.html">ABOUT US</a></li>
+                <li><a href="stories.html" class="active">SUCCESS STORIES</a></li>
+                <li><a href="contact.html">CONTACT US</a></li>
+                <li><a href="login.html" class="login">LOGIN</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Admin Dashboard</h1>
+    <p>Manage alumni network</p>
+</section>
+
+  <!-- Subheader -->
+  <!-- <section class="subheader">
+    <h1>Admin Dashboard</h1>
+    <p>Manage alumni network</p>
+  </section> -->
+
+  <!-- Dashboard Content -->
+  <main class="dashboard">
+    <div class="card">
+      <h2>User Management</h2>
+      <p>Approve or deny alumni registrations.</p>
+      <a href="#">Manage Users</a>
+    </div>
+
+    <div class="card">
+      <h2>Event Management</h2>
+      <p>Create and manage alumni events.</p>
+      <a href="#">Manage Events</a>
+    </div>
+
+    <div class="card">
+      <h2>Content Management</h2>
+      <p>Approve stories, publish newsletters.</p>
+      <a href="#">Manage Content</a>
+    </div>
+
+    <div class="card">
+      <h2>Donation & Reports</h2>
+      <p>Track contributions, generate reports.</p>
+      <a href="#">View Reports</a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+
+<!-- -------------------footer--------------- -->
+<hr>
+<section class="footer">
+	<h4>ABOUT US</h4>
+	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
+	
+</section>
+
+<section class="contact-footer">
+		<div class="abt-col">
+			<div>
+				<i class="fa fa-home"></i>
+				<span>
+					<h5>Shivaji Rd, Army Area, Agra Cantt</h5>
+					<p> Agra, Uttar Pradesh 282001</p>
+					
+				</span>
+			</div>
+			<div>
+				<i class="fa fa-phone"></i>
+				<span>
+					<h5>0562-2226009</h5>
+					<p> Monday - Saturday, 07:15 AM - 03:00 PM</p>
+					
+				</span>
+			</div>
+			<div>
+				<i class="fa fa-envelope"></i>
+				<span>
+					<h5>armyagra@gmail.com</h5>
+					<p> Email us your query</p>
+					
+				</span>
+			</div>
+		</div>
+
+</section>
+
+<!-- --------javascript for toggle menu--------- -->
+
+<script type="text/javascript">
+	var navLinks=document.getElementById("navLinks");
+
+	function showMenu() {
+		navLinks.style.right="0";
+	}
+	function hideMenu() {
+		navLinks.style.right="-200px";
+	}
+</script>
+
+</body>
+</html>
