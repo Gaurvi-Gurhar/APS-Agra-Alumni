@@ -115,7 +115,7 @@
 </div>
 
 <!-- ======= Footer ======= -->
-<hr>
+<!-- <hr>
 <section class="footer">
     <h4>ABOUT US</h4>
     <p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold the APS legacy with pride and unity.</p>
@@ -145,7 +145,10 @@
             </span>
         </div>
     </div>
-</section>
+</section> -->
+
+<div id="footer-placeholder"></div>
+
 
 <script src="stories.js"></script>
 <script>
@@ -154,5 +157,13 @@
     function showMenu(){ navLinks.style.right="0"; }
     function hideMenu(){ navLinks.style.right="-200px"; }
 </script>
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+
 </body>
 </html>

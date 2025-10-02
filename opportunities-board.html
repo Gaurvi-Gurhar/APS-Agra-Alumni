@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Opportunities Board - Alumni Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- ======= Header ======= -->
+<section class="subheader">
+    <nav>
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="stories.html">SUCCESS STORIES</a></li>
+                <li class="dropdown">
+                    <a href="#">EVENTS <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="upcoming-events.html">Upcoming Events</a></li>
+                        <li><a href="create-events.html">Create Events</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">OPPORTUNITIES <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="opportunities-board.html">Opportunities Board</a></li>
+                        <li><a href="post-opportunities.html">Post Opportunities</a></li>
+                    </ul>
+                </li>
+                <li><a href="fundraising.html">FUNDRAISING</a></li>
+                            <!-- My Profile and Logout -->
+            <li><a href="my-profile.html">MY PROFILE</a></li>
+            <li><a href="logout.html" class="login">LOGOUT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Opportunities Board</h1>
+    <p>Explore job and internship opportunities posted by alumni and the council</p>
+</section>
+
+<!-- ======= Opportunities List ======= -->
+<section class="opportunities-section">
+  <div class="opportunities-container" id="opportunitiesContainer">
+    <!-- Opportunities will be dynamically inserted here -->
+  </div>
+</section>
+
+<!-- ======= Popup ======= -->
+<div class="popup" id="popup">
+  <div class="popup-content" id="popupContent">
+    <button class="close-popup" onclick="closePopup()">&times;</button>
+    <h3 id="popupTitle"></h3>
+    <p><strong>Type:</strong> <span id="popupType"></span></p>
+    <p><strong>Company:</strong> <span id="popupCompany"></span></p>
+    <p><strong>Location:</strong> <span id="popupLocation"></span></p>
+    <p><strong>Deadline:</strong> <span id="popupDeadline"></span></p>
+    <p><strong>Description:</strong></p>
+    <p id="popupDescription"></p>
+    <p><strong>Apply here:</strong> <a href="#" id="popupLink" target="_blank">Application Link</a></p>
+  </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<!-- <hr>
+<section class="footer">
+  <h4>ABOUT US</h4>
+  <p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
+</section>
+
+<section class="contact-footer">
+  <div class="abt-col">
+    <div>
+      <i class="fa fa-home"></i>
+      <span>
+        <h5>Shivaji Rd, Army Area, Agra Cantt</h5>
+        <p>Agra, Uttar Pradesh 282001</p>
+      </span>
+    </div>
+    <div>
+      <i class="fa fa-phone"></i>
+      <span>
+        <h5>0562-2226009</h5>
+        <p>Monday - Saturday, 07:15 AM - 03:00 PM</p>
+      </span>
+    </div>
+    <div>
+      <i class="fa fa-envelope"></i>
+      <span>
+        <h5>armyagra@gmail.com</h5>
+        <p>Email us your query</p>
+      </span>
+    </div>
+  </div>
+</section> -->
+
+<div id="footer-placeholder"></div>
+
+
+<!-- ======= Scripts ======= -->
+ <script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showMenu() { navLinks.style.right="0"; }
+  function hideMenu() { navLinks.style.right="-200px"; }
+
+  const opportunitiesContainer = document.getElementById('opportunitiesContainer');
+  const popup = document.getElementById('popup');
+
+  // Fixed opportunities (existing ones)
+  const fixedOpportunities = [
+    {
+      title: "Frontend Developer Internship",
+      type: "Internship",
+      company: "Tech Innovators Pvt. Ltd.",
+      location: "Remote",
+      deadline: "2025-10-15",
+      description: "Work with React and CSS to build interactive UI components.",
+      link: "https://techinnovators.com/apply"
+    },
+    {
+      title: "Software Engineer",
+      type: "Job",
+      company: "ABC Technologies",
+      location: "Mumbai",
+      deadline: "2025-10-30",
+      description: "Full-stack development using Node.js, React, and MySQL.",
+      link: "https://abctech.com/jobs"
+    }
+  ];
+
+  function renderOpportunities() {
+    opportunitiesContainer.innerHTML = '';
+
+    // Render fixed opportunities
+    fixedOpportunities.forEach((op, index) => {
+      const card = document.createElement('div');
+      card.classList.add('opportunity-card');
+      card.innerHTML = `
+        <h3>${op.title}</h3>
+        <p><strong>Company:</strong> ${op.company}</p>
+        <p><strong>Type:</strong> ${op.type}</p>
+        <button onclick="viewDetails(${index}, true)">View Details</button>
+      `;
+      opportunitiesContainer.appendChild(card);
+    });
+
+    // Render alumni-posted opportunities from localStorage
+    const alumniPosts = JSON.parse(localStorage.getItem('alumniPosts')) || [];
+    alumniPosts.forEach((op, index) => {
+      const card = document.createElement('div');
+      card.classList.add('opportunity-card');
+      card.innerHTML = `
+        <h3>${op.title}</h3>
+        <p><strong>Company:</strong> ${op.company}</p>
+        <p><strong>Type:</strong> ${op.type}</p>
+        <button onclick="viewDetails(${index}, false)">View Details</button>
+      `;
+      opportunitiesContainer.appendChild(card);
+    });
+  }
+
+  function viewDetails(index, isFixed) {
+    let op;
+    if(isFixed) {
+      op = fixedOpportunities[index];
+    } else {
+      const alumniPosts = JSON.parse(localStorage.getItem('alumniPosts')) || [];
+      op = alumniPosts[index];
+    }
+
+    document.getElementById('popupTitle').innerText = op.title;
+    document.getElementById('popupType').innerText = op.type;
+    document.getElementById('popupCompany').innerText = op.company;
+    document.getElementById('popupLocation').innerText = op.location;
+    document.getElementById('popupDeadline').innerText = op.deadline;
+    document.getElementById('popupDescription').innerText = op.description;
+    document.getElementById('popupLink').href = op.link;
+
+    popup.style.display = 'flex';
+  }
+
+  function closePopup() {
+    popup.style.display = 'none';
+  }
+
+  renderOpportunities();
+</script>
+
+</body>
+</html>
+
+
+
+
+

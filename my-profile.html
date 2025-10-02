@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Profile</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+    .profile-container {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      font-family: 'Poppins', sans-serif;
+    }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+    .profile-header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #FF7043;
+    }
+    .profile-header h2 {
+      margin: 0;
+      font-size: 1.8rem;
+      color: #333;
+    }
+    .profile-header p {
+      margin: 5px 0;
+      color: #777;
+    }
+    .profile-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 30px;
+    }
+    .detail-box {
+      background: #f9f9f9;
+      padding: 15px 20px;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      position: relative;
+    }
+    .detail-box label {
+      font-weight: 600;
+      color: #444;
+      font-size: 0.9rem;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .detail-box span {
+      color: #333;
+      font-size: 1rem;
+    }
+    .edit-icon {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 16px;
+      color: #FF7043;
+      cursor: pointer;
+    }
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      max-width: 400px;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+    .modal-content h3 {
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    .modal-content button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 25px;
+      background: #FF7043;
+      color: #fff;
+      cursor: pointer;
+    }
+    .modal-content button:hover {
+      background: #E64A19;
+    }
+</style>
+</head>
+<body>
+
+<!-- ======= Header ======= -->
+<section class="subheader">
+    <nav>
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="stories.html">SUCCESS STORIES</a></li>
+                <li class="dropdown">
+                    <a href="#">EVENTS <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="upcoming-events.html">Upcoming Events</a></li>
+                        <li><a href="create-events.html">Create Events</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">OPPORTUNITIES <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="opportunities-board.html">Opportunities Board</a></li>
+                        <li><a href="post-opportunities.html">Post Opportunities</a></li>
+                    </ul>
+                </li>
+                <li><a href="fundraising.html">FUNDRAISING</a></li>
+                <li><a href="my-profile.html" class="active">MY PROFILE</a></li>
+                <li><a href="logout.html" class="login">LOGOUT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>My Profile</h1>
+</section>
+
+<!-- ======= Profile Section ======= -->
+<section class="profile-container">
+    <div class="profile-header">
+        <img src="images/yashuyadav.jpg" alt="Profile Photo">
+        <div>
+            <h2>Yashu Yadav</h2>
+            <p>Batch of 2015</p>
+            <p style="color:#FF7043; font-weight:600;">Software Engineer @ ABC Pvt Ltd</p>
+        </div>
+    </div>
+
+    <div class="profile-details">
+        <div class="detail-box">
+            <label>Name</label>
+            <span id="name">Yashu Yadav</span>
+            <!-- <i class="fa fa-pencil edit-icon" onclick="openModal('name')"></i> -->
+        </div>
+        <div class="detail-box">
+            <label>Batch</label>
+            <span id="batch">2015</span>
+            <!-- <i class="fa fa-pencil edit-icon" onclick="openModal('batch')"></i> -->
+        </div>
+        <div class="detail-box">
+            <label>Verification Docs</label>
+            <span id="docs">12th-Marksheet.pdf</span>
+            <!-- <i class="fa fa-pencil edit-icon" onclick="openModal('docs')"></i> -->
+        </div>
+        <div class="detail-box">
+            <label>Email</label>
+            <span id="email">yashu@email.com</span>
+            <!-- <i class="fa fa-pencil edit-icon" onclick="openModal('email')"></i> -->
+        </div>
+        <div class="detail-box">
+            <label>Phone</label>
+            <span id="phone">+91 9876543210</span>
+            <i class="fa fa-pencil edit-icon" onclick="openModal('phone')"></i>
+        </div>
+        <div class="detail-box">
+            <label>LinkedIn</label>
+            <span id="linkedin">linkedin.com/in/yashuyadav</span>
+            <i class="fa fa-pencil edit-icon" onclick="openModal('linkedin')"></i>
+        </div>
+        <div class="detail-box">
+            <label>Company</label>
+            <span id="company">ABC Pvt Ltd</span>
+            <i class="fa fa-pencil edit-icon" onclick="openModal('company')"></i>
+        </div>
+        <div class="detail-box">
+            <label>Designation</label>
+            <span id="designation">Software Engineer</span>
+            <i class="fa fa-pencil edit-icon" onclick="openModal('designation')"></i>
+        </div>
+        <div class="detail-box">
+            <label>Profile Photo</label>
+            <span id="photo">yashuyadav.jpg</span>
+            <i class="fa fa-pencil edit-icon" onclick="openModal('photo')"></i>
+        </div>
+    </div>
+</section>
+
+<!-- ======= Modal ======= -->
+<div class="modal" id="editModal">
+  <div class="modal-content">
+    <h3 id="modalTitle">Edit</h3>
+    <input type="text" id="modalInput">
+    <input type="file" id="fileInput" accept="image/*" style="display:none;">
+    <button onclick="saveChanges()">Save</button>
+  </div>
+</div>
+
+
+<!-- ======= Footer ======= -->
+<!-- <hr>
+<section class="footer">
+	<h4>ABOUT US</h4>
+	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
+</section>
+
+<section class="contact-footer">
+	<div class="abt-col">
+		<div>
+			<i class="fa fa-home"></i>
+			<span>
+				<h5>Shivaji Rd, Army Area, Agra Cantt</h5>
+				<p>Agra, Uttar Pradesh 282001</p>
+			</span>
+		</div>
+		<div>
+			<i class="fa fa-phone"></i>
+			<span>
+				<h5>0562-2226009</h5>
+				<p>Monday - Saturday, 07:15 AM - 03:00 PM</p>
+			</span>
+		</div>
+		<div>
+			<i class="fa fa-envelope"></i>
+			<span>
+				<h5>armyagra@gmail.com</h5>
+				<p>Email us your query</p>
+			</span>
+		</div>
+	</div>
+</section> -->
+
+<div id="footer-placeholder"></div>
+
+
+<!-- ======= Scripts ======= -->
+ <script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+<script>
+  var navLinks=document.getElementById("navLinks");
+  function showMenu(){ navLinks.style.right="0"; }
+  function hideMenu(){ navLinks.style.right="-200px"; }
+
+  let currentField = "";
+
+  function openModal(field){
+    currentField = field;
+    document.getElementById("modalTitle").innerText = "Edit " + field.charAt(0).toUpperCase() + field.slice(1);
+
+    if(field === "photo"){
+      document.getElementById("modalInput").style.display = "none";
+      document.getElementById("fileInput").style.display = "block";
+      document.getElementById("fileInput").value = "";
+    } else {
+      document.getElementById("modalInput").style.display = "block";
+      document.getElementById("fileInput").style.display = "none";
+      document.getElementById("modalInput").value = document.getElementById(field).innerText;
+    }
+
+    document.getElementById("editModal").style.display = "flex";
+  }
+
+  function saveChanges(){
+    if(currentField === "photo"){
+      let file = document.getElementById("fileInput").files[0];
+      if(file){
+        let reader = new FileReader();
+        reader.onload = function(e){
+          document.querySelector(".profile-header img").src = e.target.result;
+          document.getElementById("photo").innerText = file.name;
+        };
+        reader.readAsDataURL(file);
+      }
+    } else {
+      let newValue = document.getElementById("modalInput").value;
+      if(newValue.trim() !== ""){
+        document.getElementById(currentField).innerText = newValue;
+      }
+    }
+    document.getElementById("editModal").style.display = "none";
+  }
+
+  window.onclick = function(event){
+    if(event.target == document.getElementById("editModal")){
+      document.getElementById("editModal").style.display = "none";
+    }
+  }
+</script>
+
+
+</body>
+</html>

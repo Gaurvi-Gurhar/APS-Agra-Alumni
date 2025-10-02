@@ -1,0 +1,110 @@
+<!-- footer.html -->
+<style>
+  .new-footer {
+    background-color: #253758;
+    color: #f1f1f1;
+    padding: 50px 20px 20px 20px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    gap: 20px;
+  }
+  .footer-col {
+    flex: 1 1 200px;
+    min-width: 200px;
+  }
+  .footer-col h4 {
+    font-size: 18px;
+    color: #FF7043;
+    margin-bottom: 15px;
+  }
+  .footer-col p, .footer-col ul, .footer-col li, .footer-col a {
+    font-size: 14px;
+    color: #f1f1f1;
+    text-decoration: none;
+    line-height: 1.8;
+  }
+  .footer-col ul {
+    list-style: none;
+    padding: 0;
+  }
+  .footer-col ul li a:hover {
+    color: #FF7043;
+  }
+  .footer-col img{
+	width: 200px;
+	/* height: 150px; */
+	/* border-radius: 50%; */
+	margin-bottom: 20px;
+	/* box-shadow:  0 0 20px 0px rgba(0,0,0,1); */
+}
+  .footer-bottom {
+    text-align: center;
+    padding: 15px 0;
+    border-top: 1px solid #444;
+    margin-top: 30px;
+    font-size: 13px;
+    color: #ccc;
+  }
+  .footer-col i {
+    margin-right: 8px;
+    color: #FF7043;
+  }
+  @media(max-width: 768px){
+    .footer-container{
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-col {
+      text-align: center;
+    }
+  }
+</style>
+
+<footer class="new-footer">
+  <div class="footer-container">
+    <div class="footer-col">
+      <!-- <h4>About Us</h4> -->
+       		<a href="index.html">
+				<img src="images/logo.png">
+			</a>
+      <!-- <p>APS Alumni Council is dedicated to connecting alumni, fostering collaborations, and upholding our legacy.</p> -->
+    </div>
+    <div class="footer-col">
+      <h4>About Us</h4>
+      <p>APS Alumni Council is dedicated to connecting alumni, fostering collaborations, and upholding our legacy.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stories.html">Success Stories</a></li>
+        <li><a href="upcoming-events.html">Events</a></li>
+        <li><a href="opportunities-board.html">Opportunities</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Resources</h4>
+      <ul>
+        <li><a href="#">Fundraising</a></li>
+        <li><a href="#">Newsletter</a></li>
+        <li><a href="#">Alumni Card</a></li>
+        <li><a href="#">Contact Support</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <p>Shivaji Rd, Army Area, Agra Cantt<br>Agra, UP 282001</p>
+      <p><i class="fa fa-phone"></i> 0562-2226009</p>
+      <p><i class="fa fa-envelope"></i> armyagra@gmail.com</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 APS Alumni | All Rights Reserved</p>
+  </div>
+</footer>

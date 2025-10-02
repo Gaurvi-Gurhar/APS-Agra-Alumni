@@ -203,7 +203,7 @@ The APS Faculty</p>
 
 
 <!-- -------------------footer--------------- -->
-<hr>
+<!-- <hr>
 <section class="footer">
 	<h4>ABOUT US</h4>
 	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
@@ -238,7 +238,9 @@ The APS Faculty</p>
 			</div>
 		</div>
 
-</section>
+</section> -->
+<div id="footer-placeholder"></div>
+
 
 
 
@@ -255,6 +257,14 @@ The APS Faculty</p>
 		navLinks.style.right="-200px";
 	}
 </script>
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+
 
 
 </body>

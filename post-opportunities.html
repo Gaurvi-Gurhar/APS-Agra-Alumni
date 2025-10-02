@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Opportunity - Alumni Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- ======= Header ======= -->
+<section class="subheader">
+    <nav>
+        <a href="index.html"><img src="images/logo.png"></a>
+        <div class="nav-links" id="navLinks">
+            <i class="fa fa-times" onclick="hideMenu()"></i>
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="stories.html">SUCCESS STORIES</a></li>
+                <li class="dropdown">
+                    <a href="#">EVENTS <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="upcoming-events.html">Upcoming Events</a></li>
+                        <li><a href="create-events.html">Create Events</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#">OPPORTUNITIES <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="opportunities-board.html">Opportunities Board</a></li>
+                        <li><a href="post-opportunities.html">Post Opportunities</a></li>
+                    </ul>
+                </li>
+                <li><a href="fundraising.html">FUNDRAISING</a></li>
+                            <!-- My Profile and Logout -->
+            <li><a href="my-profile.html">MY PROFILE</a></li>
+            <li><a href="logout.html" class="login">LOGOUT</a></li>
+            </ul>
+        </div>
+        <i class="fa fa-bars" onclick="showMenu()"></i>
+    </nav>
+    <h1>Post an Opportunity</h1>
+    <p>Share jobs or internships for fellow alumni</p>
+</section>
+
+<!-- ======= Post Opportunity Form ======= -->
+<section class="form-section">
+  <div class="form-container">
+    <form id="opportunityForm">
+      <label for="title">Opportunity Title</label>
+      <input type="text" id="title" required placeholder="Ex: Software Engineer Internship">
+
+      <label for="type">Type</label>
+      <select id="type" required>
+        <option value="">Select Type</option>
+        <option value="Job">Job</option>
+        <option value="Internship">Internship</option>
+      </select>
+
+      <label for="company">Company Name</label>
+      <input type="text" id="company" required placeholder="Ex: ABC Tech Pvt. Ltd.">
+
+      <label for="location">Location</label>
+      <input type="text" id="location" required placeholder="Ex: Remote / Agra / Mumbai">
+
+      <label for="deadline">Application Deadline</label>
+      <input type="date" id="deadline" required>
+
+      <label for="description">Description</label>
+      <textarea id="description" rows="5" placeholder="Brief description of the opportunity"></textarea>
+
+      <label for="link">Application Link</label>
+      <input type="url" id="link" placeholder="Ex: https://company.com/apply">
+
+      <button type="submit" class="btn">Post</button>
+    </form>
+  </div>
+</section>
+
+<!-- ======= Popup ======= -->
+<div class="popup" id="popup">
+  <div class="popup-content">
+    <p>Your opportunity has been successfully posted!</p>
+    <button class="confirm" onclick="closePopup()">OK</button>
+  </div>
+</div>
+
+<!-- ======= Footer ======= -->
+<!-- <hr>
+<section class="footer">
+  <h4>ABOUT US</h4>
+  <p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
+</section>
+
+<section class="contact-footer">
+  <div class="abt-col">
+    <div>
+      <i class="fa fa-home"></i>
+      <span>
+        <h5>Shivaji Rd, Army Area, Agra Cantt</h5>
+        <p>Agra, Uttar Pradesh 282001</p>
+      </span>
+    </div>
+    <div>
+      <i class="fa fa-phone"></i>
+      <span>
+        <h5>0562-2226009</h5>
+        <p>Monday - Saturday, 07:15 AM - 03:00 PM</p>
+      </span>
+    </div>
+    <div>
+      <i class="fa fa-envelope"></i>
+      <span>
+        <h5>armyagra@gmail.com</h5>
+        <p>Email us your query</p>
+      </span>
+    </div>
+  </div>
+</section> -->
+
+<div id="footer-placeholder"></div>
+
+
+<!-- ======= Scripts ======= -->
+ <script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
+<script>
+  var navLinks = document.getElementById("navLinks");
+  function showMenu() { navLinks.style.right="0"; }
+  function hideMenu() { navLinks.style.right="-200px"; }
+
+  const form = document.getElementById('opportunityForm');
+  const popup = document.getElementById('popup');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const opportunity = {
+      title: document.getElementById('title').value,
+      type: document.getElementById('type').value,
+      company: document.getElementById('company').value,
+      location: document.getElementById('location').value,
+      deadline: document.getElementById('deadline').value,
+      description: document.getElementById('description').value,
+      link: document.getElementById('link').value
+    };
+
+    // Get existing posts from localStorage
+    let posts = JSON.parse(localStorage.getItem('alumniPosts')) || [];
+    posts.push(opportunity);
+    localStorage.setItem('alumniPosts', JSON.stringify(posts));
+
+    // Reset form
+    form.reset();
+
+    // Show popup
+    popup.style.display = 'flex';
+  });
+
+  function closePopup() {
+    popup.style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

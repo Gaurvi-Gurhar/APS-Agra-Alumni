@@ -6,12 +6,11 @@
   <title>Alumni Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <!-- Navbar -->
 
 <!-- ======= Header ======= -->
 <section class="subheader">
@@ -19,76 +18,47 @@
         <a href="index.html"><img src="images/logo.png"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="alumni council.html">ALUMNI COUNCIL</a></li>
-                <li><a href="about.html">ABOUT US</a></li>
-                <li><a href="stories.html" class="active">SUCCESS STORIES</a></li>
-                <li><a href="contact.html">CONTACT US</a></li>
-                <li><a href="login.html" class="login">LOGIN</a></li>
-            </ul>
+<ul>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="stories.html">SUCCESS STORIES</a></li>
+
+    <!-- Events Dropdown -->
+    <li class="dropdown">
+        <a href="#">EVENTS <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu">
+                    <li><a href="upcoming-events.html">Upcoming Events</a></li>
+                    <li><a href="create-events.html">Create Events</a></li>
+                </ul>
+            </li>
+
+            <!-- Opportunities Dropdown -->
+            <li class="dropdown">
+                <a href="#">OPPORTUNITIES <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu">
+                    <li><a href="opportunities-board.html">Opportunities Board</a></li>
+                    <li><a href="post-opportunities.html">Post Opportunities</a></li>
+                </ul>
+            </li>
+
+            <li><a href="fundraising.html" class="active">FUNDRAISING</a></li>
+
+            <!-- My Profile and Logout -->
+            <li><a href="my-profile.html">MY PROFILE</a></li>
+            <li><a href="logout.html" class="login">LOGOUT</a></li>
+        </ul>
+
         </div>
         <i class="fa fa-bars" onclick="showMenu()"></i>
     </nav>
-    <h1>Welcome, [Alumni Name]</h1>
+    <h1>Welcome Dear Alumni</h1>
     <p>Your personalized dashboard</p>
 </section>
 
-
-  <!-- Subheader -->
-  <!-- <section class="subheader">
-    <h1>Welcome, [Alumni Name]</h1>
-    <p>Your personalized dashboard</p>
-  </section> -->
-
-  <!-- Dashboard Content -->
-  <main class="dashboard">
-    <div class="card">
-      <h2>My Profile</h2>
-      <p>Edit info, update LinkedIn, upload portfolio.</p>
-      <a href="#">Go to Profile</a>
-    </div>
-
-    <div class="card">
-      <h2>Create Event</h2>
-      <p>Create and manage your events.</p>
-      <a href="#">Manage Events</a>
-    </div>
-
-    <div class="card">
-      <h2>Post Opportunities</h2>
-      <p>Post and manage job/internship opportunities for others.</p>
-      <a href="#">Create Opportunities</a>
-    </div>
-
-    <div class="card">
-      <h2>Upcoming Events</h2>
-      <p>See alumni meetups, webinars, reunions.</p>
-      <a href="#">View Events</a>
-    </div>
-
-    <div class="card">
-      <h2>Opportunities Board</h2>
-      <p>Post openings or apply to opportunities.</p>
-      <a href="#">Go to Opportunities Board</a>
-    </div>
-
-    <div class="card">
-      <h2>Fundraising</h2>
-      <p>Donate to causes/events.</p>
-      <a href="#">Donate Now</a>
-    </div>
-
-    
-
-  </main>
-
 <!-- -------------------footer--------------- -->
-<hr>
+<!-- <hr>
 <section class="footer">
 	<h4>ABOUT US</h4>
 	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
-	
 </section>
 
 <section class="contact-footer">
@@ -97,35 +67,32 @@
 				<i class="fa fa-home"></i>
 				<span>
 					<h5>Shivaji Rd, Army Area, Agra Cantt</h5>
-					<p> Agra, Uttar Pradesh 282001</p>
-					
+					<p>Agra, Uttar Pradesh 282001</p>
 				</span>
 			</div>
 			<div>
 				<i class="fa fa-phone"></i>
 				<span>
 					<h5>0562-2226009</h5>
-					<p> Monday - Saturday, 07:15 AM - 03:00 PM</p>
-					
+					<p>Monday - Saturday, 07:15 AM - 03:00 PM</p>
 				</span>
 			</div>
 			<div>
 				<i class="fa fa-envelope"></i>
 				<span>
 					<h5>armyagra@gmail.com</h5>
-					<p> Email us your query</p>
-					
+					<p>Email us your query</p>
 				</span>
 			</div>
 		</div>
+</section> -->
 
-</section>
+<div id="footer-placeholder"></div>
+
 
 <!-- --------javascript for toggle menu--------- -->
-
 <script type="text/javascript">
 	var navLinks=document.getElementById("navLinks");
-
 	function showMenu() {
 		navLinks.style.right="0";
 	}
@@ -133,9 +100,13 @@
 		navLinks.style.right="-200px";
 	}
 </script>
-
-
-
+<script>
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById('footer-placeholder').innerHTML = data;
+    });
+</script>
 
 </body>
 </html>
