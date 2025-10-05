@@ -3,131 +3,125 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
+  <title>Alumni Dashboard</title>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-  <!-- Navbar -->
 
-<!-- ======= Header ======= -->
+<!-- ======= Admin Header ======= -->
 <section class="subheader">
     <nav>
-        <a href="index.html"><img src="images/logo.png"></a>
+        <a href="admin-dashboard.html"><img src="images/logo.png" alt="Admin Logo"></a>
         <div class="nav-links" id="navLinks">
             <i class="fa fa-times" onclick="hideMenu()"></i>
             <ul>
+                <li><a href="admin-dashboard.html">DASHBOARD</a></li>
                 <li><a href="index.html">HOME</a></li>
-                <li><a href="alumni council.html">ALUMNI COUNCIL</a></li>
-                <li><a href="about.html">ABOUT US</a></li>
-                <li><a href="stories.html" class="active">SUCCESS STORIES</a></li>
-                <li><a href="contact.html">CONTACT US</a></li>
-                <li><a href="login.html" class="login">LOGIN</a></li>
+                <!-- MANAGE Dropdown -->
+                <li class="dropdown">
+                    <a href="#">MANAGE <i class="fa fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="manage-alumni.html">MANAGE ALUMNI</a></li>
+                        <li><a href="manage-events.html">MANAGE EVENTS</a></li>
+                        <li><a href="manage-opportunities.html">MANAGE OPPORTUNITIES</a></li>
+                        <li><a href="manage-stories.html">MANAGE STORIES</a></li>
+                        <li><a href="manage-funds.html">MANAGE FUNDS</a></li>
+                    </ul>
+                </li>
+                <!-- <li><a href="#">MANAGE ALUMNI</a></li> -->
+                <!-- <li><a href="#">APPROVE REQUESTS</a></li> -->
+                <!-- <li><a href="#">EVENTS</a></li>
+                <li><a href="#">OPPORTUNITIES</a></li>
+                <li><a href="#">FUNDRAISING</a></li> -->
+                <li><a href="logout.html" class="login">LOGOUT</a></li>
             </ul>
         </div>
         <i class="fa fa-bars" onclick="showMenu()"></i>
     </nav>
-    <h1>Admin Dashboard</h1>
-    <p>Manage alumni network</p>
+    <h1>Welcome Admin</h1>
+    <p>Manage the platform efficiently</p>
 </section>
 
-  <!-- Subheader -->
-  <!-- <section class="subheader">
-    <h1>Admin Dashboard</h1>
-    <p>Manage alumni network</p>
-  </section> -->
 
-  <!-- Dashboard Content -->
-  <main class="dashboard">
-    <div class="card">
-      <h2>User Management</h2>
-      <p>Approve or deny alumni registrations.</p>
-      <a href="#">Manage Users</a>
+  <!-- DASHBOARD MAIN -->
+  <section class="dashboard">
+    <!-- <h1>Welcome, Admin</h1>
+    <p>Here’s a quick overview of what’s happening in the Alumni Community.</p> -->
+
+    <!-- CARDS SUMMARY -->
+    <div class="card-container">
+          <h1>Welcome, Admin</h1>
+    <p>Here’s a quick overview of what’s happening in the Alumni Community.</p>
+      <div class="card">
+        <i class="fa fa-users"></i>
+        <h2>120</h2>
+        <p>Active Alumni</p>
+      </div>
+      <div class="card">
+        <i class="fa fa-user-plus"></i>
+        <h2>8</h2>
+        <p>Pending Approvals</p>
+      </div>
+      <div class="card">
+        <i class="fa fa-calendar"></i>
+        <h2>5</h2>
+        <p>Upcoming Events</p>
+      </div>
+      <div class="card">
+        <i class="fa fa-briefcase"></i>
+        <h2>12</h2>
+        <p>Opportunities Posted</p>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>Event Management</h2>
-      <p>Create and manage alumni events.</p>
-      <a href="#">Manage Events</a>
+    <!-- MANAGEMENT SECTIONS -->
+    <div class="management-sections">
+      <div class="manage-box">
+        <h3>Pending Alumni Approvals</h3>
+        <p>Review alumni who registered and approve or reject their requests.</p>
+        <a href="manage-alumni.html" class="btn">Manage Alumni</a>
+      </div>
+
+      <div class="manage-box">
+        <h3>Manage Events</h3>
+        <p>Create new events or approve those submitted by alumni.</p>
+        <a href="manage-events.html" class="btn">Manage Events</a>
+      </div>
+
+      <div class="manage-box">
+        <h3>Manage Opportunities</h3>
+        <p>Approve or reject job/internship opportunities shared by alumni.</p>
+        <a href="manage-opportunities.html" class="btn">Manage Opportunities</a>
+      </div>
+
+      <div class="manage-box">
+        <h3>Success Stories</h3>
+        <p>Highlight inspiring stories from our alumni community.</p>
+        <a href="manage-stories.html" class="btn">Manage Stories</a>
+      </div>
+
+      <div class="manage-box">
+        <h3>Funds</h3>
+        <p>Manage funds and donations for our alumni community.</p>
+        <a href="manage-funds.html" class="btn">Manage Funds</a>
+      </div>
+
     </div>
+  </section>
 
-    <div class="card">
-      <h2>Content Management</h2>
-      <p>Approve stories, publish newsletters.</p>
-      <a href="#">Manage Content</a>
-    </div>
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
 
-    <div class="card">
-      <h2>Donation & Reports</h2>
-      <p>Track contributions, generate reports.</p>
-      <a href="#">View Reports</a>
-    </div>
-  </main>
-
-  <!-- Footer -->
-
-<!-- -------------------footer--------------- -->
-<!-- <hr>
-<section class="footer">
-	<h4>ABOUT US</h4>
-	<p>Discover our Alumni Council's dedication to fostering alumni connections. Together, we uphold <br>the APS legacy with pride and unity.</p>
-	
-</section>
-
-<section class="contact-footer">
-		<div class="abt-col">
-			<div>
-				<i class="fa fa-home"></i>
-				<span>
-					<h5>Shivaji Rd, Army Area, Agra Cantt</h5>
-					<p> Agra, Uttar Pradesh 282001</p>
-					
-				</span>
-			</div>
-			<div>
-				<i class="fa fa-phone"></i>
-				<span>
-					<h5>0562-2226009</h5>
-					<p> Monday - Saturday, 07:15 AM - 03:00 PM</p>
-					
-				</span>
-			</div>
-			<div>
-				<i class="fa fa-envelope"></i>
-				<span>
-					<h5>armyagra@gmail.com</h5>
-					<p> Email us your query</p>
-					
-				</span>
-			</div>
-		</div>
-
-</section> -->
-<div id="footer-placeholder"></div>
-
-
-<!-- --------javascript for toggle menu--------- -->
-
-<script type="text/javascript">
-	var navLinks=document.getElementById("navLinks");
-
-	function showMenu() {
-		navLinks.style.right="0";
-	}
-	function hideMenu() {
-		navLinks.style.right="-200px";
-	}
-</script>
-<script>
-  fetch('footer.html')
-    .then(response => response.text())
-    .then(data => {
-      document.getElementById('footer-placeholder').innerHTML = data;
-    });
-</script>
+  <script>
+    // Footer fetch
+    fetch('footer.html')
+      .then(res => res.text())
+      .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+  </script>
 
 </body>
 </html>

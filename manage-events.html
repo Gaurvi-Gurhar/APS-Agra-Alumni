@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Events - Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap"
+    rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: #f5f6fa;
+      color: #333;
+    }
+
+    /* ===== Header ===== */
+    .subheader {
+      background: #004080;
+      color: white;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .subheader h1 {
+      margin: 5px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    nav img {
+      width: 120px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      background: #003366;
+      border-radius: 5px;
+    }
+
+    .menu-btn,
+    .close-btn {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    /* Navbar */
+    nav {
+      background: #004080;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: relative;
+    }
+
+    nav .logo a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      position: relative;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      padding: 10px 15px;
+      display: block;
+      font-weight: 500;
+    }
+
+    nav ul li a:hover {
+      background: #003366;
+      border-radius: 5px;
+    }
+
+    .menu-btn,
+    .close-btn {
+      display: none;
+      cursor: pointer;
+      font-size: 24px;
+    }
+
+    /* Dropdown submenu */
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: #004080;
+      min-width: 180px;
+      border-radius: 5px;
+      z-index: 100;
+    }
+
+    .submenu li a {
+      padding: 10px 15px;
+    }
+
+    .submenu li a:hover {
+      background: #003366;
+    }
+
+    /* Dropdown active */
+    .submenu.active {
+      display: block;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        position: fixed;
+        right: -100%;
+        top: 0;
+        width: 250px;
+        height: 100%;
+        background: #004080;
+        transition: 0.3s;
+        padding-top: 60px;
+      }
+
+      .menu-btn,
+      .close-btn {
+        display: block;
+        color: white;
+      }
+
+      #closeBtn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+      }
+
+      nav ul li {
+        margin: 0;
+      }
+
+      .submenu {
+        position: static;
+      }
+    }
+
+
+    /* ===== Cards ===== */
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin: 30px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: #004080;
+    }
+
+    /* ===== Table Section ===== */
+    .table-section {
+      display: none;
+      padding: 20px;
+    }
+
+    .table-section.active {
+      display: block;
+    }
+
+    h2 {
+      color: #004080;
+      margin-bottom: 15px;
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin-bottom: 15px;
+      text-align: right;
+    }
+
+    .search-container input {
+      padding: 8px;
+      width: 250px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    /* ===== Add Event Form ===== */
+    .add-event {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .add-event input,
+    .add-event select,
+    .add-event textarea {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .add-event button {
+      padding: 10px 15px;
+      background: #004080;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .add-event button:hover {
+      background: #002850;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    th,
+    td {
+      padding: 12px 15px;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: #004080;
+      color: white;
+    }
+
+    tr:hover {
+      background: #f1f7ff;
+    }
+
+    /* Buttons */
+    .actions button {
+      padding: 6px 12px;
+      margin: 2px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .approve {
+      background: #28a745;
+      color: white;
+    }
+
+    .reject {
+      background: #dc3545;
+      color: white;
+    }
+
+    .delete {
+      background: #6c757d;
+      color: white;
+    }
+
+    .view {
+      background: #007bff;
+      color: white;
+    }
+
+    /* Pagination */
+    .pagination {
+      margin-top: 15px;
+      text-align: center;
+    }
+
+    .pagination button {
+      margin: 0 5px;
+      padding: 5px 10px;
+      border: none;
+      background: #004080;
+      color: white;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .pagination button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <section class="subheader">
+    <div id="ad-nav-placeholder"></div>
+    <h1>Manage Events</h1>
+    <p>Approve, add, edit, or delete events</p>
+  </section>
+
+  <!-- Cards -->
+  <div class="card-container">
+    <div class="card" onclick="showTable('allEvents')">
+      <h3>All Events</h3>
+      <p>View and manage all events</p>
+    </div>
+    <div class="card" onclick="showTable('pendingEvents')">
+      <h3>Pending Events</h3>
+      <p>Approve or reject new events</p>
+    </div>
+    <div class="card" onclick="showTable('addEvent')">
+      <h3>Add Event</h3>
+      <p>Post a new event</p>
+    </div>
+  </div>
+
+  <!-- Add Event Form -->
+  <div id="addEvent" class="table-section">
+    <div class="add-event">
+      <h2>Add New Event</h2>
+      <form id="eventForm">
+        <input type="text" placeholder="Title" name="title" required>
+        <input type="date" name="date" required>
+        <input type="text" placeholder="Organizer" name="organizer" required>
+        <textarea placeholder="Description" name="description"></textarea>
+        <button type="submit">Add Event</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- All Events Table -->
+  <div id="allEvents" class="table-section">
+    <h2>All Events</h2>
+    <div class="search-container">
+      <input type="text" id="searchAllEvents" placeholder="Search by title or date..."
+        onkeyup="filterEvents('allEventsTable','searchAllEvents')">
+    </div>
+    <table id="allEventsTable"></table>
+    <div class="pagination" id="allEventsPagination"></div>
+  </div>
+
+  <!-- Pending Events Table -->
+  <div id="pendingEvents" class="table-section">
+    <h2>Pending Events</h2>
+    <div class="search-container">
+      <input type="text" id="searchPendingEvents" placeholder="Search by title or date..."
+        onkeyup="filterEvents('pendingEventsTable','searchPendingEvents')">
+    </div>
+    <table id="pendingEventsTable"></table>
+    <div class="pagination" id="pendingEventsPagination"></div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    const eventsData = [];
+    for (let i = 1; i <= 25; i++) {
+      eventsData.push({
+        title: "Event " + i,
+        date: `2025-0${(i % 12) + 1}-15`,
+        organizer: "Organizer " + i,
+        status: i % 3 === 0 ? "Pending" : "Approved",
+        description: "This is a description for Event " + i
+      });
+    }
+
+    let currentPageAll = 1, currentPagePending = 1;
+    const rowsPerPage = 10;
+
+    function showTable(sectionId) {
+      document.querySelectorAll('.table-section').forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+      if (sectionId === 'allEvents') renderTable(eventsData, 'allEventsTable', currentPageAll, 'allEventsPagination');
+      if (sectionId === 'pendingEvents') renderTable(eventsData.filter(e => e.status === 'Pending'), 'pendingEventsTable', currentPagePending, 'pendingEventsPagination');
+    }
+
+    function renderTable(data, tableId, page, paginationId) {
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+      const paginatedData = data.slice(start, end);
+
+      let tableHTML = `<thead>
+      <tr>
+        <th>Title</th>
+        <th>Date</th>
+        <th>Organizer</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr></thead><tbody>`;
+
+      paginatedData.forEach(event => {
+        tableHTML += `
+        <tr>
+          <td data-label="Title">${event.title}</td>
+          <td data-label="Date">${event.date}</td>
+          <td data-label="Organizer">${event.organizer}</td>
+          <td data-label="Description">${event.description}</td>
+          <td data-label="Status">${event.status}</td>
+          <td data-label="Actions" class="actions">
+            ${event.status === 'Pending'
+            ? `<button class="approve" onclick="approveEvent('${event.title}')">Approve</button>
+                 <button class="reject" onclick="rejectEvent('${event.title}')">Reject</button>` : ""}
+            <button class="view" onclick="viewEvent('${event.title}')">View</button>
+            <button class="delete" onclick="deleteEvent('${event.title}')">Delete</button>
+          </td>
+        </tr>`;
+      });
+
+      tableHTML += `</tbody>`;
+      document.getElementById(tableId).innerHTML = tableHTML;
+
+      const totalPages = Math.ceil(data.length / rowsPerPage);
+      let paginationHTML = '';
+      for (let i = 1; i <= totalPages; i++) {
+        paginationHTML += `<button onclick="changePage('${tableId}','${paginationId}',${i})" ${i === page ? 'disabled' : ''}>${i}</button>`;
+      }
+      document.getElementById(paginationId).innerHTML = paginationHTML;
+    }
+
+    function changePage(tableId, paginationId, page) {
+      if (tableId === 'allEventsTable') {
+        currentPageAll = page;
+        renderTable(eventsData, tableId, page, paginationId);
+      } else {
+        currentPagePending = page;
+        renderTable(eventsData.filter(e => e.status === 'Pending'), tableId, page, paginationId);
+      }
+    }
+
+    // Button Actions
+    function approveEvent(title) {
+      const event = eventsData.find(e => e.title === title);
+      event.status = "Approved";
+      alert(event.title + " has been approved!");
+      showTable('pendingEvents');
+    }
+    function rejectEvent(title) {
+      const index = eventsData.findIndex(e => e.title === title);
+      eventsData.splice(index, 1);
+      alert("Event rejected and removed.");
+      showTable('pendingEvents');
+    }
+    function viewEvent(title) {
+      const event = eventsData.find(e => e.title === title);
+      alert(`Title: ${event.title}\nDate: ${event.date}\nOrganizer: ${event.organizer}\nDescription: ${event.description}\nStatus: ${event.status}`);
+    }
+    function deleteEvent(title) {
+      const index = eventsData.findIndex(e => e.title === title);
+      eventsData.splice(index, 1);
+      alert("Event deleted.");
+      showTable('allEvents');
+    }
+
+    // Add new event from form
+    const form = document.getElementById("eventForm");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      eventsData.push({
+        title: formData.get("title"),
+        date: formData.get("date"),
+        organizer: formData.get("organizer"),
+        status: "Pending",
+        description: formData.get("description")
+      });
+      alert("Event added as Pending!");
+      form.reset();
+      showTable('allEvents');
+    });
+
+    // Search
+    function filterEvents(tableId, searchId) {
+      const query = document.getElementById(searchId).value.toLowerCase();
+      let data = tableId === 'allEventsTable' ? eventsData : eventsData.filter(e => e.status === 'Pending');
+      const filtered = data.filter(e => e.title.toLowerCase().includes(query) || e.date.includes(query));
+      renderTable(filtered, tableId, 1, tableId === 'allEventsTable' ? 'allEventsPagination' : 'pendingEventsPagination');
+    }
+
+    showTable('allEvents');
+  </script>
+
+</body>
+
+</html>

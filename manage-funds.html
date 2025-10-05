@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manage Funds - Admin Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Poppins:wght@100;300;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: #f5f6fa; color: #333; }
+
+    /* ===== Header ===== */
+    .subheader { background: #004080; color: white; text-align: center; padding: 20px; }
+    .subheader h1 { margin: 5px 0; }
+    nav { display: flex; justify-content: space-between; align-items: center; }
+    nav img { width: 120px; }
+    .nav-links { display: flex; align-items: center; }
+    .nav-links ul { list-style: none; display: flex; margin: 0; padding: 0; }
+    .nav-links ul li { margin: 0 15px; position: relative; }
+    .nav-links ul li a { text-decoration: none; color: white; font-weight: 500; }
+    .nav-links ul li a:hover { color: #ffd700; }
+    .nav-links .dropdown-menu { display: none; position: absolute; top: 30px; left: 0; background: #004080; list-style: none; padding: 10px 0; border-radius: 5px; }
+    .nav-links .dropdown:hover .dropdown-menu { display: block; }
+    .nav-links .dropdown-menu li { padding: 5px 20px; }
+    .nav-links .dropdown-menu li a { color: white; }
+    .nav-links .dropdown-menu li a:hover { color: #ffd700; }
+    .fa-bars, .fa-times { display: none; cursor: pointer; color: white; font-size: 24px; }
+
+    /* Navbar */
+nav {
+  background: #004080;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  position: relative;
+}
+
+nav .logo a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 20px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  position: relative;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  font-weight: 500;
+}
+
+nav ul li a:hover {
+  background: #003366;
+  border-radius: 5px;
+}
+
+.menu-btn, .close-btn {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+/* Dropdown submenu */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #004080;
+  min-width: 180px;
+  border-radius: 5px;
+  z-index: 100;
+}
+
+.submenu li a {
+  padding: 10px 15px;
+}
+
+.submenu li a:hover {
+  background: #003366;
+}
+
+/* Dropdown active */
+.submenu.active {
+  display: block;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav ul {
+    flex-direction: column;
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: #004080;
+    transition: 0.3s;
+    padding-top: 60px;
+  }
+
+  .menu-btn, .close-btn {
+    display: block;
+    color: white;
+  }
+
+  #closeBtn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+  }
+
+  nav ul li {
+    margin: 0;
+  }
+
+  .submenu {
+    position: static;
+  }
+}
+
+
+    /* ===== Cards ===== */
+    .card-container { display: flex; justify-content: center; gap: 20px; margin: 30px; flex-wrap: wrap; }
+    .card { background: #fff; padding: 30px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; text-align: center; cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.05); }
+    .card h3 { margin-bottom: 10px; color: #004080; }
+
+    /* ===== Table Section ===== */
+    .table-section { display: none; padding: 20px; }
+    .table-section.active { display: block; }
+    h2 { color: #004080; margin-bottom: 15px; }
+
+    /* Search Bar */
+    .search-container { margin-bottom: 15px; text-align: right; }
+    .search-container input { padding: 8px; width: 250px; border-radius: 5px; border: 1px solid #ccc; }
+
+    table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    th, td { padding: 12px 15px; border-bottom: 1px solid #ddd; text-align: center; }
+    th { background: #004080; color: white; }
+    tr:hover { background: #f1f7ff; }
+
+    /* Buttons */
+    .actions button { padding: 6px 12px; margin: 2px; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; }
+    .approve { background: #28a745; color: white; }
+    .reject { background: #dc3545; color: white; }
+    .delete { background: #6c757d; color: white; }
+    .view { background: #007bff; color: white; }
+
+    /* Pagination */
+    .pagination { margin-top: 15px; text-align: center; }
+    .pagination button { margin: 0 5px; padding: 5px 10px; border: none; background: #004080; color: white; border-radius: 4px; cursor: pointer; }
+    .pagination button:disabled { background: #ccc; cursor: not-allowed; }
+
+    /* Responsive */
+    @media (max-width:768px) {
+      .fa-bars { display: block; }
+      .fa-times { display: block; }
+      .nav-links { position: fixed; top: 0; right: -100%; width: 60%; height: 100%; background: #004080; flex-direction: column; align-items: center; justify-content: center; transition: right 0.3s ease; }
+      .nav-links ul { flex-direction: column; }
+      .nav-links ul li { margin: 15px 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<section class="subheader">
+<div id="ad-nav-placeholder"></div>
+  <h1>Manage Funds</h1>
+  <p>Approve or manage fundraisings and donations</p>
+</section>
+
+<!-- Cards -->
+<div class="card-container">
+  <div class="card" onclick="showTable('fundraisings')">
+    <h3>All Fundraisings</h3>
+    <p>View and manage all fundraising campaigns</p>
+  </div>
+  <div class="card" onclick="showTable('donations')">
+    <h3>All Donations</h3>
+    <p>View and manage all donations</p>
+  </div>
+  <div class="card" id="totalDonationsCard">
+    <h3>Total Donations</h3>
+    <p id="totalDonationsAmount">₹0</p>
+  </div>
+</div>
+
+
+
+<!-- Fundraisings Table -->
+<div id="fundraisings" class="table-section">
+  <h2>Fundraisings</h2>
+  <div class="search-container">
+    <input type="text" id="searchFundraisings" placeholder="Search by title or organizer..." onkeyup="filterFunds('fundraisingsTable','searchFundraisings')">
+  </div>
+  <table id="fundraisingsTable"></table>
+  <div class="pagination" id="fundraisingsPagination"></div>
+</div>
+
+<!-- Donations Table -->
+<div id="donations" class="table-section">
+  <h2>Donations</h2>
+  <div class="search-container">
+    <input type="text" id="searchDonations" placeholder="Search by donor or fundraiser..." onkeyup="filterFunds('donationsTable','searchDonations')">
+  </div>
+  <table id="donationsTable"></table>
+  <div class="pagination" id="donationsPagination"></div>
+</div>
+
+
+
+
+<!-- -----------------nav script---------------------- -->
+<script src="nav.js"></script>
+
+
+
+<script>
+  // Navbar responsive
+  const navLinks = document.getElementById("navLinks");
+  function showMenu(){ navLinks.style.right = "0"; }
+  function hideMenu(){ navLinks.style.right = "-100%"; }
+
+  // Dummy data
+  const fundraisingsData = [];
+  const donationsData = [];
+  for(let i=1;i<=20;i++){
+    fundraisingsData.push({title:"Campaign "+i, organizer:"Organizer "+i, target:5000+i*100, collected:2000+i*50, date:"2025-10-"+(i<10?"0"+i:i), status: i%3===0?"Pending":"Approved"});
+    donationsData.push({donor:"Donor "+i, amount:100+i*10, fundraiser:"Campaign "+(i%10+1), date:"2025-10-"+(i<10?"0"+i:i)});
+  }
+
+  let currentFundPage = 1, currentDonationPage = 1;
+  const rowsPerPage = 10;
+
+  // Show table
+  function showTable(sectionId){
+    document.querySelectorAll('.table-section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(sectionId).classList.add('active');
+    if(sectionId==='fundraisings') renderFundTable(fundraisingsData,'fundraisingsTable',currentFundPage,'fundraisingsPagination');
+    if(sectionId==='donations') renderDonationTable(donationsData,'donationsTable',currentDonationPage,'donationsPagination');
+  }
+
+  // Fundraising table
+  function renderFundTable(data, tableId, page, paginationId){
+    const start = (page-1)*rowsPerPage;
+    const end = start+rowsPerPage;
+    const paginated = data.slice(start,end);
+
+    let html=`<thead><tr>
+      <th>Title</th><th>Organizer</th><th>Target</th><th>Collected</th><th>Date</th><th>Status</th><th>Actions</th>
+    </tr></thead><tbody>`;
+    paginated.forEach(f=>{html+=`<tr>
+      <td data-label="Title">${f.title}</td>
+      <td data-label="Organizer">${f.organizer}</td>
+      <td data-label="Target">${f.target}</td>
+      <td data-label="Collected">${f.collected}</td>
+      <td data-label="Date">${f.date}</td>
+      <td data-label="Status">${f.status}</td>
+      <td data-label="Actions" class="actions">
+        ${f.status==='Pending'?`<button class="approve" onclick="approveFund('${f.title}')">Approve</button>
+        <button class="reject" onclick="rejectFund('${f.title}')">Reject</button>`:""}
+        <button class="view" onclick="viewFund('${f.title}')">View</button>
+        <button class="delete" onclick="deleteFund('${f.title}')">Delete</button>
+      </td>
+    </tr>`});
+    html+="</tbody>";
+    document.getElementById(tableId).innerHTML=html;
+
+    const totalPages = Math.ceil(data.length/rowsPerPage);
+    let phtml='';
+    for(let i=1;i<=totalPages;i++){
+      phtml+=`<button onclick="changeFundPage(${i})" ${i===page?'disabled':''}>${i}</button>`;
+    }
+    document.getElementById(paginationId).innerHTML=phtml;
+  }
+
+  // Donations table
+  function renderDonationTable(data, tableId, page, paginationId){
+    const start = (page-1)*rowsPerPage;
+    const end = start+rowsPerPage;
+    const paginated = data.slice(start,end);
+
+    let html=`<thead><tr>
+      <th>Donor</th><th>Amount</th><th>Fundraiser</th><th>Date</th><th>Actions</th>
+    </tr></thead><tbody>`;
+    paginated.forEach(d=>{html+=`<tr>
+      <td data-label="Donor">${d.donor}</td>
+      <td data-label="Amount">${d.amount}</td>
+      <td data-label="Fundraiser">${d.fundraiser}</td>
+      <td data-label="Date">${d.date}</td>
+      <td data-label="Actions" class="actions">
+        <button class="view" onclick="viewDonation('${d.donor}')">View</button>
+        <button class="delete" onclick="deleteDonation('${d.donor}')">Delete</button>
+      </td>
+    </tr>`});
+    html+="</tbody>";
+    document.getElementById(tableId).innerHTML=html;
+
+    const totalPages = Math.ceil(data.length/rowsPerPage);
+    let phtml='';
+    for(let i=1;i<=totalPages;i++){
+      phtml+=`<button onclick="changeDonationPage(${i})" ${i===page?'disabled':''}>${i}</button>`;
+    }
+    document.getElementById(paginationId).innerHTML=phtml;
+  }
+
+  // Pagination
+  function changeFundPage(page){ currentFundPage=page; renderFundTable(fundraisingsData,'fundraisingsTable',page,'fundraisingsPagination'); }
+  function changeDonationPage(page){ currentDonationPage=page; renderDonationTable(donationsData,'donationsTable',page,'donationsPagination'); }
+
+  // Fund actions
+  function approveFund(title){
+    const f = fundraisingsData.find(x => x.title === title);
+    f.status = "Approved";
+    alert(title + " approved");
+    showTable('fundraisings');
+  }
+
+  function rejectFund(title){
+    const index = fundraisingsData.findIndex(x => x.title === title);
+    fundraisingsData.splice(index, 1);
+    // Remove associated donations
+    for (let i = donationsData.length - 1; i >= 0; i--) {
+      if (donationsData[i].fundraiser === title) donationsData.splice(i, 1);
+    }
+    alert("Fundraising rejected along with its donations");
+    showTable('fundraisings');
+    updateTotalDonations();
+  }
+
+  function viewFund(title){
+    const f = fundraisingsData.find(x => x.title === title);
+    alert(`Title: ${f.title}\nOrganizer: ${f.organizer}\nTarget: ${f.target}\nCollected: ${f.collected}\nDate: ${f.date}\nStatus: ${f.status}`);
+  }
+
+  function deleteFund(title){
+    const index = fundraisingsData.findIndex(x => x.title === title);
+    fundraisingsData.splice(index, 1);
+    // Remove associated donations
+    for (let i = donationsData.length - 1; i >= 0; i--) {
+      if (donationsData[i].fundraiser === title) donationsData.splice(i, 1);
+    }
+    alert("Fundraising deleted along with its donations");
+    showTable('fundraisings');
+    updateTotalDonations();
+  }
+
+  // Donation actions
+  function viewDonation(donor){
+    const d = donationsData.find(x => x.donor === donor);
+    alert(`Donor: ${d.donor}\nAmount: ${d.amount}\nFundraiser: ${d.fundraiser}\nDate: ${d.date}`);
+  }
+
+  function deleteDonation(donor){
+    const index = donationsData.findIndex(x => x.donor === donor);
+    if(index !== -1){
+      const amount = donationsData[index].amount;
+      const fundraiser = donationsData[index].fundraiser;
+      donationsData.splice(index, 1);
+
+      // Reduce collected amount in corresponding fundraiser
+      const f = fundraisingsData.find(x => x.title === fundraiser);
+      if(f) f.collected -= amount;
+
+      alert("Donation deleted and fundraiser amount updated");
+      showTable('donations');
+      updateTotalDonations();
+    }
+  }
+
+  // Search
+  function filterFunds(tableId,searchId){
+    const query=document.getElementById(searchId).value.toLowerCase();
+    if(tableId==='fundraisingsTable'){
+      const filtered=fundraisingsData.filter(f=> f.title.toLowerCase().includes(query) || f.organizer.toLowerCase().includes(query));
+      renderFundTable(filtered,'fundraisingsTable',1,'fundraisingsPagination');
+    }else{
+      const filtered=donationsData.filter(d=> d.donor.toLowerCase().includes(query) || d.fundraiser.toLowerCase().includes(query));
+      renderDonationTable(filtered,'donationsTable',1,'donationsPagination');
+    }
+  }
+
+  // Total donations card
+  function updateTotalDonations(){
+    const total = donationsData.reduce((sum,d)=>sum+d.amount,0);
+    document.getElementById('totalDonationsAmount').innerText = "₹" + total.toLocaleString();
+  }
+
+  // Default load
+  showTable('fundraisings');
+  updateTotalDonations();
+</script>
+
+<!-- Footer -->
+<div id="footer-placeholder"></div>
+<script>
+  fetch('footer.html')
+    .then(res => res.text())
+    .then(data => document.getElementById('footer-placeholder').innerHTML = data);
+</script>
+
+</body>
+</html>
